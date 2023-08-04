@@ -211,6 +211,7 @@ function getHomepage() {
 	"对于语法突出显示，请像这样包装代码：“<语言> <代码>”，其中<语言>是任何已知的编程语言。",
 	"---",
 	"十字街当前 Github：https://github.com/CrosSt-Chat/CSC-main",
+    "六字街当前 Github：https://github.com/geGDVS/6chat",
 	"",
 	"所有消息历史记录都保留在十字街服务器上。"
 ].join("\n");
