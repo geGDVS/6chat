@@ -1,4 +1,4 @@
-var clientName = "[六字街网页端](https://6.sqj.repl.co/)";
+var clientName = "[六字街网页端](https://gegdvs.github.io/6chat/)";
 
 var wsAddress = "wss://ws.crosst.chat:35197/";
 

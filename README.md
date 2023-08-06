@@ -2,7 +2,7 @@ Since this website is mainly aimed at Chinese users, only Chinese is used in thi
 
 # 六字街聊天室
 
-立刻体验：[六字街聊天室](https://6.sqj.repl.co/)
+立刻体验：[六字街聊天室](https://gegdvs.github.io/6chat/)
 
 六字街聊天室的整体使用逻辑、大多数前端代码来自 [hack-chat/main](https://github.com/hack-chat/main/) 和 [CrosSt-Chat/CSC-main](https://github.com/CrosSt-Chat/CSC-main)。
 
