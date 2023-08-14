@@ -34,9 +34,16 @@ var helpText = `# 六字街简版帮助  （2023.8.13更新）
 #### 私聊
 发送 \`/w <用户名> <文本>\` 以发送私聊。如 \`/w JohnDoe ( ﾟ∀。)\` 将把信息 \`( ﾟ∀。)\` 发送给名为 \`JohnDoe\` 的用户。
 
-#### 提示: 
+##### 提示: 
 **当有人向你发送私聊时, 你可以键入 \`/r <文本>\` 快速回复, 无需反复键入私聊对象。**
 ==由于私聊偶尔会出现失效的情况，大量私聊内容请参考下文“建立私人聊天室”进入单独房间进行私聊。==
+
+#### 更改名字
+发送 \`/nick <用户名>\` 以更改名字。如 \`/w JohnDoe John\` 将把名字 \`JohnDoe\` 改为了 \`John\` 。
+
+##### 提示: 
+**请勿频繁更改名字，这样极有可能受到频率限制。**
+==如果遇到名称不合法或受到频率限制，请刷新网页。==
 
 ### 建立私人聊天室
 1. 将网址 \`https://gegdvs.github.io/6chat/?公共聊天室\` 中  (半角) 问号后更改为你想要的聊天室名字, 即可进入。
@@ -510,8 +517,9 @@ var COMMANDS = {
     }
 
     document.getElementById('version-text').innerText = args.ver;
-
-    pushMessage({ nick: '*', text: '在线的用户有：' + nicks.join(", ")})
+    
+    pushMessage({ nick: '*', trip:'Online', text: '在线的用户有：' + nicks.join(", ")});
+      pushMessage({nick:'*', trip:'/Welc/', text:'欢迎使用六字街客户端，喜欢的话可以添加到收藏夹哦～'});
   },
 
   onlineAdd: function (args) {
@@ -706,15 +714,10 @@ function pushMessage(args) {
 
     // Mention someone when left-clicking
     nickLinkEl.onclick = function ( e ) {
-      // Reply to a whisper or info is meaningless
-      if ( args.type == 'whisper' || args.nick == '*' || args.nick == '!' ) {
-        return true;
-      } else {
         e.preventDefault();
         insertAtCursor( '@' + args.nick + ' ' );
         $('#chatinput').focus();
-        return false;
-      }
+        return;
     }
 
     var date = new Date(args.time || Date.now());
@@ -889,6 +892,7 @@ $('#chatinput').onkeydown = function (e) {
     e.preventDefault();
     if (e.target.value != '') {
         var text = e.target.value;
+        console.log(`Send: ${text}`);
         e.target.value = '';
         if (text == '/help'){
             pushMessage({ nick: '*', trip:'/Help/', text: helpText });
@@ -898,6 +902,20 @@ $('#chatinput').onkeydown = function (e) {
             send({ cmd: 'chat', text: `/me 即将成为 @${newNick} 。` });
             ws.close();
             change_nick(myChannel, newNick);
+        }
+        else if (text.startsWith('/w')){
+            var whisperArgs = text.split(' ');
+            if (whisperArgs[2] == undefined){
+                pushMessage({ nick: '!', trip:'/Error', text: '请填写私聊内容。' });
+            } else {
+                if (whisperArgs[1].startsWith('@')){
+                    whisperArgs[1] = whisperArgs[1].slice(1);
+                } 
+                send({ cmd: 'chat', text: whisperArgs.join(' ') });
+            }
+        }
+        else if (text == '/shrug'){
+            send({ cmd: 'chat', text: "¯\\\\\\_(ツ)_/¯" });
         }
         else {
             // Submit message
