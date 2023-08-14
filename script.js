@@ -250,6 +250,10 @@ function localStorageSet(key, val) {
   } catch (e) { }
 }
 
+function welcome(){
+    pushMessage({nick:'*', trip:'/Welc/', text:'欢迎使用六字街客户端，喜欢的话可以添加到收藏夹哦～'});
+}
+
 var ws;
 var myNick = '';
 var myPswd = '';
@@ -352,16 +356,16 @@ function join(channel) {
         // 自动登录
         send({cmd: 'join', channel, nick: myNick, trip, key, clientName});
         wasConnected = true;
-        return;
+        return welcome();
       } else {
         // 弹出确认框
         if (window.confirm('以上次的昵称登入聊天室？\n' + accountStr)) {
           send({cmd: 'join', channel, nick: myNick, trip, key, clientName});
           wasConnected = true;
-          return;
+          return welcome();
         } else {
           wasConnected = getNickToJoin(channel);
-          return;
+          return welcome();
         }
       }
     }
@@ -378,22 +382,23 @@ function join(channel) {
         // 自动登录
         send({cmd: 'join', channel, nick: myNick, clientName});
         wasConnected = true;
-        return;
+        return welcome();
       } else {
         // 弹出确认框
         if (window.confirm('以上次的昵称登入聊天室？\n' + accountStr)) {
           send({cmd: 'join', channel, nick: myNick, clientName});
           wasConnected = true;
-          return;
+          return welcome();
         } else {
           wasConnected = getNickToJoin(channel);
-          return;
+          return welcome();
         }
       }
     }
 
     // 剩下的情况，都是没有保存用户信息的
     wasConnected = getNickToJoin(channel);
+    return welcome();
   }
 
   ws.onclose = function () {
@@ -519,7 +524,7 @@ var COMMANDS = {
     document.getElementById('version-text').innerText = args.ver;
     
     pushMessage({ nick: '*', trip:'Online', text: '在线的用户有：' + nicks.join(", ")});
-      pushMessage({nick:'*', trip:'/Welc/', text:'欢迎使用六字街客户端，喜欢的话可以添加到收藏夹哦～'});
+      
   },
 
   onlineAdd: function (args) {
