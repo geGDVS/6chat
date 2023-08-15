@@ -1206,14 +1206,15 @@ function userIgnore(nick) {
 /* color scheme switcher */
 
 var schemes = [
-  '黑色系 - 寒夜',
-  '黑色系 - 都市',
-  '黑色系 - 荧黄',
-  '青色系 - 初夏',
-  '黑色系 - 晨雾',
-  '黑色系 - 新春',
-  '白色系 - 入冬',
-  '测试主题'
+    'Atelier - Dune',
+    '黑色系 - 寒夜',
+    '黑色系 - 都市',
+    '黑色系 - 荧黄',
+    '青色系 - 初夏',
+    '黑色系 - 晨雾',
+    '黑色系 - 新春',
+    '白色系 - 入冬',
+    '测试主题'
 ];
 
 var highlights = [
@@ -1228,13 +1229,19 @@ var highlights = [
   'zenburn'
 ]
 
-var currentScheme = '测试主题';
+var currentScheme = 'Atelier - Dune';
 var currentHighlight = 'rainbow';
 
 function setScheme(scheme) {
   currentScheme = scheme;
+    if (scheme  == 'Atelier - Dune'){
+        $('#scheme-link').href = "scheme.css";
+    } else {
   $('#scheme-link').href = "https://ws.crosst.chat:21563/schemes/" + scheme + ".css";
+    }
   switch (scheme) {
+    case 'Atelier - Dune': setHighlight('rainbow');
+    break;
     case '黑色系 - 寒夜': setHighlight('rainbow');
     break;
     case '青色系 - 初夏': setHighlight('tomorrow');
@@ -1254,9 +1261,9 @@ function setScheme(scheme) {
 }
 
 function setHighlight(scheme) {
-  currentHighlight = scheme;
-  $('#highlight-link').href = "https://ws.crosst.chat:21563/vendor/hljs/styles/" + scheme + ".min.css";
-  localStorageSet('highlight', scheme);
+    currentHighlight = scheme;
+    $('#highlight-link').href = "https://ws.crosst.chat:21563/vendor/hljs/styles/" + scheme + ".min.css";
+    localStorageSet('highlight', scheme);
 }
 
 // Add scheme options to dropdown selector
@@ -1301,11 +1308,10 @@ $('#highlight-selector').value = currentHighlight;
 /* main */
 
 if (myChannel == '') {
-  getHomepage();
-  $('#footer').classList.add('hidden');
-  $('#sidebar').classList.add('hidden');
+    getHomepage();
+    $('#footer').classList.add('hidden');
+    $('#sidebar').classList.add('hidden');
 } else {
-    
     welcome(myChannel);
     join(myChannel);
 }
