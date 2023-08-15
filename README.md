@@ -23,3 +23,7 @@ Since this website is mainly aimed at Chinese users, only Chinese is used in thi
 2. 进入六字街源代码目录，打开`index.html`。
 
 3. 测试六字街后端是否正常运行。
+
+## 鸣谢
+
+- [@Dr.Doppelglower](https://github.com/Doppelganger-phi) - 提供历史记录技术及资源支持。
