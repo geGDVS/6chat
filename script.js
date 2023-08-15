@@ -747,7 +747,11 @@ function pushMessage(args) {
     // Mention someone when left-clicking
     nickLinkEl.onclick = function ( e ) {
         e.preventDefault();
-        insertAtCursor( '@' + args.nick + ' ' );
+        if ( args.type == 'whisper' ) {
+            insertAtCursor( '@* ' );
+        } else {
+            insertAtCursor( '@' + args.nick + ' ' );
+        }
         $('#chatinput').focus();
         return;
     }
