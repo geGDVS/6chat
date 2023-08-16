@@ -1233,7 +1233,7 @@ var highlights = [
 ]
 
 var currentScheme = 'Atelier - Dune';
-var currentHighlight = 'rainbow';
+var currentHighlight = 'darcula';
 
 function setScheme(scheme) {
   currentScheme = scheme;
@@ -1243,7 +1243,7 @@ function setScheme(scheme) {
   $('#scheme-link').href = "https://ws.crosst.chat:21563/schemes/" + scheme + ".css";
     }
   switch (scheme) {
-    case 'Atelier - Dune': setHighlight('rainbow');
+    case 'Atelier - Dune': setHighlight('darcula');
     break;
     case '黑色系 - 寒夜': setHighlight('rainbow');
     break;
