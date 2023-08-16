@@ -254,7 +254,6 @@ function welcome(channel){
     pushMessage({nick:'*', trip:'/Welc/', text:'欢迎使用六字街客户端，喜欢的话可以添加到收藏夹哦～'});
     console.log('Enter Channel: ' + channel)
     if (channel == '公共聊天室'){ 
-        pushMessage({nick:'*', trip:'/Hist/', text:'### _==以下为历史记录。==_'});
         var httpRequest = new XMLHttpRequest();
         param = 'chatroom=cc&key=FREE_KEY&raw=1';
         httpRequest.open('GET', 'https://lookup.doppelganger.eu.org/msg/?'+param, true);
@@ -263,8 +262,8 @@ function welcome(channel){
                 var json = httpRequest.responseText;
                 data = JSON.parse(json);
                 data = data['msg'];
+                pushMessage({nick:'*', trip:'/Hist/', text:'### _==以下为历史记录。==_'});
                 for (var i = 0; i < 15; i++) { 
-                    console.log(data[i]);
                     msg = data[i];
                     if (msg.uType == "MEMBER"){
                         pushMessage({nick:msg.nick, trip:msg.trip, text:msg.text, member:true});
@@ -272,7 +271,7 @@ function welcome(channel){
                         pushMessage({nick:msg.nick, trip:msg.trip, text:msg.text, admin:true});
                     } else {
                         pushMessage({nick:msg.nick, trip:msg.trip, text:msg.text});
-                    }   
+                    }
                 }
                 pushMessage({nick:'*', trip:'/Hist/', text:'### _==向上滑动查看历史记录。==_'});
             }
