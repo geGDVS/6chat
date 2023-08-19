@@ -1,4 +1,4 @@
-var clientName = "[六字街网页端](https://gegdvs.github.io/6chat/)";
+var clientName = "[六字街网页端](https://6chat.pages.dev/)";
 
 var wsAddress = "wss://ws.crosst.chat:35197/";
 
@@ -49,8 +49,8 @@ var helpText = `# 六字街简版帮助  （2023.8.13更新）
 发送 \`/time\` 以查看时间。
 
 ### 建立私人聊天室
-1. 将网址 \`https://gegdvs.github.io/6chat/?公共聊天室\` 中  (半角) 问号后更改为你想要的聊天室名字, 即可进入。
-    例如 https://gegdvs.github.io/6chat/?tech 或 https://gegdvs.github.io/6chat/?1 
+1. 将网址 \`https://6chat.pages.dev/?公共聊天室\` 中  (半角) 问号后更改为你想要的聊天室名字, 即可进入。
+    例如 https://6chat.pages.dev/?tech 或 https://6chat.pages.dev/?1 
 
 2. 快速邀请用户进入一个随机的聊天室
     1. 在侧边栏中找到 \`在线的用户\` 一项；
@@ -67,7 +67,7 @@ var helpText = `# 六字街简版帮助  （2023.8.13更新）
 - 遇到恶意使用LaTeX刷屏/造成卡顿的情况可在侧边栏取消勾选“启用LaTeX”选项。
 
 ### 机器人
-　　截止到 2022 年 6 月 21 日，@do_ob @bo_od @Repeater & @Rip @Help是机器人。 @Anotia有时会由同名作者亲自操作发消息。
+　　截止到 2023 年 8 月 19 日，@do_ob @bo_od @Repeater & @Rip @Help @Snowi 是机器人。 @Anotia有时会由同名作者亲自操作发消息。
 ###### 机器人的使用方法即将推出。
 
 ### 昵称颜色对应的权限
@@ -343,7 +343,7 @@ function getHomepage() {
 	"欢迎来到六字街，一个最小的，无干扰的十字街聊天应用程序。",
     "---",
 	"频道创建、加入并与 URL 共享，通过更改问号后的文本来创建您自己的频道。",
-	"如果您希望自己的频道名称为“您的频道”：[https://gegdvs.github.io/6chat/?您的频道](https://gegdvs.github.io/6chat/?您的频道)",
+	"如果您希望自己的频道名称为“您的频道”：[https://6chat.pages.dev/?您的频道](https://6chat.pages.dev/?您的频道)",
 	"没有频道列表，因此可以使用秘密频道名称进行私下讨论。",
 	"",
 	"这是您可以加入的预制频道：",
