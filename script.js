@@ -45,6 +45,9 @@ var helpText = `# 六字街简版帮助  （2023.8.13更新）
 **请勿频繁更改名字，这样极有可能受到频率限制。**
 ==如果遇到名称不合法或受到频率限制，请刷新网页。==
 
+#### 显示时间
+发送 \`/time\` 以查看时间。
+
 ### 建立私人聊天室
 1. 将网址 \`https://gegdvs.github.io/6chat/?公共聊天室\` 中  (半角) 问号后更改为你想要的聊天室名字, 即可进入。
     例如 https://gegdvs.github.io/6chat/?tech 或 https://gegdvs.github.io/6chat/?1 
@@ -201,6 +204,12 @@ $('#parse-latex').checked = false;
 md.inline.ruler.disable([ 'katex' ]);
 md.block.ruler.disable([ 'katex' ]);
 
+function get_time(){
+    var myDate = new Date();
+    var time = myDate.toLocaleTimeString();
+    return time.slice(3); 
+}
+
 // Escape Markdown
 function escapeMarkdown(text) {
   return text.replace(/([*_~`])/g, '\\$1');
@@ -308,7 +317,7 @@ function getHomepage() {
   ws = new WebSocket( wsAddress );
 
   ws.onerror = function () {
-    pushMessage({ text: "# dx_xb\n连接聊天室服务器失败，请稍候重试。\n**如果这个问题持续出现，请立刻联系 mail@henrize.kim 感谢您的理解和支持**", nick: '!'});
+    pushMessage({ text: "# awa\n连接聊天室服务器失败，请稍候重试。\n**如果这个问题持续出现，请立刻联系 mail@henrize.kim 感谢您的理解和支持**", nick: '!'});
   }
 
   var reqSent = false;
@@ -362,7 +371,7 @@ function join(channel) {
   ws = new WebSocket( wsAddress );
 
   ws.onerror = function () {
-    pushMessage({ text: "# dx_xb\n连接聊天室服务器失败，请稍候重试。\n**如果这个问题持续出现，请立刻联系 mail@henrize.kim 感谢您的理解和支持**", nick: '!'});
+    pushMessage({ text: "# awa\n连接聊天室服务器失败，请稍候重试。\n**如果这个问题持续出现，请立刻联系 mail@henrize.kim 感谢您的理解和支持**", nick: '!'});
   }
 
   var wasConnected = false;
@@ -446,7 +455,7 @@ function change_nick(channel, nick) {
   ws = new WebSocket( wsAddress );
 
   ws.onerror = function () {
-    pushMessage({ text: "# dx_xb\n连接聊天室服务器失败，请稍候重试。\n**如果这个问题持续出现，请立刻联系 mail@henrize.kim 感谢您的理解和支持**", nick: '!'});
+    pushMessage({ text: "# awa\n连接聊天室服务器失败，请稍候重试。\n**如果这个问题持续出现，请立刻联系 mail@henrize.kim 感谢您的理解和支持**", nick: '!'});
   }
 
   var wasConnected = false;
@@ -769,6 +778,9 @@ function pushMessage(args) {
     else if ( args.type == 'whisper' && args.nick.startsWith('【发送私聊】 ') ){
         textEl.innerHTML = md.render('你悄悄对@' + args.nick.slice(7) + '说：' + args.text);
     }
+    else if ( args.trip == '/Time/' ){
+        textEl.innerHTML = get_time();
+    }
     else{
         textEl.innerHTML = md.render(args.text);
     }
@@ -951,6 +963,9 @@ $('#chatinput').onkeydown = function (e) {
         }
         else if (text == '/shrug'){
             send({ cmd: 'chat', text: "¯\\\\\\_(ツ)_/¯" });
+        }
+        else if (text == '/time'){
+            pushMessage({ nick: '*', trip:'/Time/', text: get_time()});
         }
         else {
             // Submit message
