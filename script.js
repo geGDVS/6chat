@@ -207,7 +207,7 @@ md.block.ruler.disable([ 'katex' ]);
 function get_time(){
     var myDate = new Date();
     var time = myDate.toLocaleTimeString();
-    return time.slice(3); 
+    return time.slice(0, 5); 
 }
 
 // Escape Markdown
