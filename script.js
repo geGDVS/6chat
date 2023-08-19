@@ -299,6 +299,10 @@ var lastSent = [""];
 var lastSentPos = 0;
 
 var allowHTML = false;
+// User list
+var onlineUsers = [];
+var ignoredUsers = [];
+
 
 
 function notify(args) {
@@ -658,6 +662,10 @@ function pushMessage(args) {
     var nickLinkEl = document.createElement('a');
       if ( args.type == 'whisper'){
           nickLinkEl.textContent = '*';
+      }
+      else if (ignoredUsers.indexOf(args.nick) >= 0){
+          console.log(`${args.nick}: ${args.text}`);
+          return;
       }
       else {
           nickLinkEl.textContent = args.nick;
@@ -1168,9 +1176,6 @@ $('#allow-html').onchange = function (e) {
   allowHTML = enabled;
 }
 
-// User list
-var onlineUsers = [];
-var ignoredUsers = [];
 
 function userAdd(nick) {
   var user = document.createElement('a');
@@ -1178,6 +1183,9 @@ function userAdd(nick) {
 
   user.onclick = function (e) {
     userInvite(nick)
+  }
+  user.oncontextmenu = function (e) {
+    userIgnore(nick)
   }
 
   var userLi = document.createElement('li');
@@ -1218,7 +1226,20 @@ function userInvite(nick) {
 }
 
 function userIgnore(nick) {
-  ignoredUsers.push(nick);
+    if (nick == myNick) {
+        pushMessage({nick: '!', trip: '/Error', text: `你不能屏蔽你自己！`});
+        return;
+    }
+  var index = ignoredUsers.indexOf(nick);
+  if (index >= 0) {
+    ignoredUsers.splice(index, 1);
+    pushMessage({nick: '*', trip: 'Ignore', text: `已取消屏蔽 @${nick}。`});
+  }
+  else {
+    ignoredUsers.push(nick);
+    pushMessage({nick: '*', trip: 'Ignore', text: `已屏蔽 @${nick}。`});
+  }
+  
 }
 
 /* color scheme switcher */
