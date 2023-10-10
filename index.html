@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <title>六字街聊天室</title>
-
+    <link rel="manifest" href="manifest.json">
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 
   <link rel="stylesheet" href="style.css">
@@ -105,7 +105,12 @@
       
     </div>
   </nav>
-  <script src="script.js"></script>
+    <!-- build:js index.js -->
+        <script src="utils.js"></script>
+        <script src="sidebar.js"></script>
+        <script src="client.js"></script>
+        <script src="notification.js"></script>
+    <!-- /build -->
   <script>
     if ( typeof clientName != 'string') {
       location.href = 'https://crosst.chat/error-page';
