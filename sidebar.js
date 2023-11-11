@@ -1,3 +1,5 @@
+var allowHTML = false;
+
 $('#sidebar').onmouseenter = $('#sidebar').ontouchstart = function (e) {
   $('#sidebar-content').classList.remove('hidden');
   $('#sidebar').classList.add('expand');
@@ -201,7 +203,7 @@ function setScheme(scheme) {
     if (scheme  == 'Atelier - Dune'){
         $('#scheme-link').href = "scheme.css";
     } else {
-  $('#scheme-link').href = "https://ws.crosst.chat:21563/schemes/" + scheme + ".css";
+        $('#scheme-link').href = "https://crosst.chat/schemes/" + scheme + ".css";
     }
   switch (scheme) {
     case 'Atelier - Dune': setHighlight('darcula');
@@ -226,7 +228,7 @@ function setScheme(scheme) {
 
 function setHighlight(scheme) {
     currentHighlight = scheme;
-    $('#highlight-link').href = "https://ws.crosst.chat:21563/vendor/hljs/styles/" + scheme + ".min.css";
+    $('#highlight-link').href = "https://crosst.chat/vendor/hljs/styles/" + scheme + ".min.css";
     localStorageSet('highlight', scheme);
 }
 
