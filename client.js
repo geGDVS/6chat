@@ -1,6 +1,7 @@
 var clientName = "[六字街网页端](https://6chat.pages.dev/)";
 
-var wsAddress = "wss://ws.crosst.chat/";
+// var wsAddress = "wss://ws.crosst.chat/";
+var wsAddress = "wss://crosst.zzcm.fun/ws";
 
 var helpText = `# 六字街简版帮助  （2023.10.10更新）
 
